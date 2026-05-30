@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1c2fe25440867bb3b5578cf3aa237d9a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_1c2fe25440867bb3b5578cf3aa237d9a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_1c2fe25440867bb3b5578cf3aa237d9a = L.map(
+                "map_1c2fe25440867bb3b5578cf3aa237d9a",
+                {
+                    center: [-6.9, 107.6],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 8,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_64005cbc06b2bbf16b4025f51e29ed93 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_64005cbc06b2bbf16b4025f51e29ed93.addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+            var circle_marker_10e15835a3f61e4d04c9c8409c17dd75 = L.circleMarker(
+                [-7.02, 107.52],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_a474ef69c8ee46edea60b364c6bc034d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_45b13442606457d1911ef1b7156d9e11 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gQkFORFVORzwvaDQ+CiAgICAgICAgICAgIDxociBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPkthdGVnb3JpOjwvYj4gPHNwYW4gc3R5bGU9ImNvbG9yOiByZWQ7IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gVGluZ2dpPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiAyMzc8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gMyw1MDQsMzQyLjAyIFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_a474ef69c8ee46edea60b364c6bc034d.setContent(i_frame_45b13442606457d1911ef1b7156d9e11);
+            
+        
+
+        circle_marker_10e15835a3f61e4d04c9c8409c17dd75.bindPopup(popup_a474ef69c8ee46edea60b364c6bc034d)
+        ;
+
+        
+    
+    
+            circle_marker_10e15835a3f61e4d04c9c8409c17dd75.bindTooltip(
+                `<div>
+                     KABUPATEN BANDUNG
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_119720ee9062a113e9185b5e353fe6fc = L.circleMarker(
+                [-6.86, 107.48],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_92db1ac26b7bcba7ca5194bc78e4fed5 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_00b14932b4098077a1aa99bf5247213d = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gQkFORFVORyBCQVJBVDwvaDQ+CiAgICAgICAgICAgIDxociBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPkthdGVnb3JpOjwvYj4gPHNwYW4gc3R5bGU9ImNvbG9yOiBncmVlbjsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5XaWxheWFoIFJpc2lrbyBSZW5kYWg8L3NwYW4+PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIEJhbmppcjo8L2I+IDMzPC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIFNhbXBhaDo8L2I+IDEsMTQ0LDYwNy45NiBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_92db1ac26b7bcba7ca5194bc78e4fed5.setContent(i_frame_00b14932b4098077a1aa99bf5247213d);
+            
+        
+
+        circle_marker_119720ee9062a113e9185b5e353fe6fc.bindPopup(popup_92db1ac26b7bcba7ca5194bc78e4fed5)
+        ;
+
+        
+    
+    
+            circle_marker_119720ee9062a113e9185b5e353fe6fc.bindTooltip(
+                `<div>
+                     KABUPATEN BANDUNG BARAT
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8305067fc91f119e642798d5b45bd9d8 = L.circleMarker(
+                [-6.24, 107.0],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_78165e71c718fb94653629cc788a38ad = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_f90dfc8d08bdc952f9915707f2ff4bc9 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gQkVLQVNJPC9oND4KICAgICAgICAgICAgPGhyIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+S2F0ZWdvcmk6PC9iPiA8c3BhbiBzdHlsZT0iY29sb3I6IGdyZWVuOyBmb250LXdlaWdodDogYm9sZDsiPldpbGF5YWggUmlzaWtvIFJlbmRhaDwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgQmFuamlyOjwvYj4gNzQ8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gMSw3MTcsODU2Ljg4IFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_78165e71c718fb94653629cc788a38ad.setContent(i_frame_f90dfc8d08bdc952f9915707f2ff4bc9);
+            
+        
+
+        circle_marker_8305067fc91f119e642798d5b45bd9d8.bindPopup(popup_78165e71c718fb94653629cc788a38ad)
+        ;
+
+        
+    
+    
+            circle_marker_8305067fc91f119e642798d5b45bd9d8.bindTooltip(
+                `<div>
+                     KABUPATEN BEKASI
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1087e423bc6cba1c869d0ba0ccde9021 = L.circleMarker(
+                [-6.59, 106.79],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_b151c755b8758ab89633927efadb1bfe = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_a4bb5bb7d63990a0914d1672100d3887 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gQk9HT1I8L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogcmVkOyBmb250LXdlaWdodDogYm9sZDsiPldpbGF5YWggUmlzaWtvIFRpbmdnaTwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgQmFuamlyOjwvYj4gMjMyPC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIFNhbXBhaDo8L2I+IDIsNjE2LDMwOS4wOSBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_b151c755b8758ab89633927efadb1bfe.setContent(i_frame_a4bb5bb7d63990a0914d1672100d3887);
+            
+        
+
+        circle_marker_1087e423bc6cba1c869d0ba0ccde9021.bindPopup(popup_b151c755b8758ab89633927efadb1bfe)
+        ;
+
+        
+    
+    
+            circle_marker_1087e423bc6cba1c869d0ba0ccde9021.bindTooltip(
+                `<div>
+                     KABUPATEN BOGOR
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f9b9bdc5d01925407fb13d7681fd4fc5 = L.circleMarker(
+                [-7.33, 108.35],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_f793f32b43d066430b448382d7faaf4f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_7d0502b5e8bc7a280e68baf0e752ecbf = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gQ0lBTUlTPC9oND4KICAgICAgICAgICAgPGhyIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+S2F0ZWdvcmk6PC9iPiA8c3BhbiBzdHlsZT0iY29sb3I6IGdyZWVuOyBmb250LXdlaWdodDogYm9sZDsiPldpbGF5YWggUmlzaWtvIFJlbmRhaDwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgQmFuamlyOjwvYj4gNjA8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gMjg3LDcyOC4zOCBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_f793f32b43d066430b448382d7faaf4f.setContent(i_frame_7d0502b5e8bc7a280e68baf0e752ecbf);
+            
+        
+
+        circle_marker_f9b9bdc5d01925407fb13d7681fd4fc5.bindPopup(popup_f793f32b43d066430b448382d7faaf4f)
+        ;
+
+        
+    
+    
+            circle_marker_f9b9bdc5d01925407fb13d7681fd4fc5.bindTooltip(
+                `<div>
+                     KABUPATEN CIAMIS
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a590faf48e301b456736d64342a217be = L.circleMarker(
+                [-6.82, 107.14],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_82deee02b9d693c1bcc3f6aefe8fd11c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_bc7abe272d885ffd73bfa9a6dd253fea = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gQ0lBTkpVUjwvaDQ+CiAgICAgICAgICAgIDxociBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPkthdGVnb3JpOjwvYj4gPHNwYW4gc3R5bGU9ImNvbG9yOiBncmVlbjsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5XaWxheWFoIFJpc2lrbyBSZW5kYWg8L3NwYW4+PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIEJhbmppcjo8L2I+IDU3PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIFNhbXBhaDo8L2I+IDEsMDgzLDAwNy42NiBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_82deee02b9d693c1bcc3f6aefe8fd11c.setContent(i_frame_bc7abe272d885ffd73bfa9a6dd253fea);
+            
+        
+
+        circle_marker_a590faf48e301b456736d64342a217be.bindPopup(popup_82deee02b9d693c1bcc3f6aefe8fd11c)
+        ;
+
+        
+    
+    
+            circle_marker_a590faf48e301b456736d64342a217be.bindTooltip(
+                `<div>
+                     KABUPATEN CIANJUR
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1574bbae12f523ef3b0988b173290da5 = L.circleMarker(
+                [-6.73, 108.55],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_e9f3b993e350ad2523523019a59d7780 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_9bb95d718b8dc4ac8df3489b2a6e4148 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gQ0lSRUJPTjwvaDQ+CiAgICAgICAgICAgIDxociBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPkthdGVnb3JpOjwvYj4gPHNwYW4gc3R5bGU9ImNvbG9yOiBncmVlbjsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5XaWxheWFoIFJpc2lrbyBSZW5kYWg8L3NwYW4+PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIEJhbmppcjo8L2I+IDkwPC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIFNhbXBhaDo8L2I+IDk3NSwyMzEuMTYgVG9uPC9wPgogICAgICAgIDwvZGl2PgogICAgICAgIA==" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_e9f3b993e350ad2523523019a59d7780.setContent(i_frame_9bb95d718b8dc4ac8df3489b2a6e4148);
+            
+        
+
+        circle_marker_1574bbae12f523ef3b0988b173290da5.bindPopup(popup_e9f3b993e350ad2523523019a59d7780)
+        ;
+
+        
+    
+    
+            circle_marker_1574bbae12f523ef3b0988b173290da5.bindTooltip(
+                `<div>
+                     KABUPATEN CIREBON
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_03942b927d226a1a7bad886201b0837c = L.circleMarker(
+                [-7.21, 107.9],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_f57b36fc3ac7f8c3566343281a8a2184 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_56b86c8b326e0145d1e1dc9f650ef2b7 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gR0FSVVQ8L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogZ3JlZW47IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gUmVuZGFoPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiA5NTwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBTYW1wYWg6PC9iPiA3MjIsMDE3LjE1IFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_f57b36fc3ac7f8c3566343281a8a2184.setContent(i_frame_56b86c8b326e0145d1e1dc9f650ef2b7);
+            
+        
+
+        circle_marker_03942b927d226a1a7bad886201b0837c.bindPopup(popup_f57b36fc3ac7f8c3566343281a8a2184)
+        ;
+
+        
+    
+    
+            circle_marker_03942b927d226a1a7bad886201b0837c.bindTooltip(
+                `<div>
+                     KABUPATEN GARUT
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c6f73d6c3064b41750ba159a1e67c6a7 = L.circleMarker(
+                [-6.33, 108.32],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_54a5fad872c286fc4601652ab9306420 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_7f4c786308a3bc3cdcc3e9f0b3e18815 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gSU5EUkFNQVlVPC9oND4KICAgICAgICAgICAgPGhyIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+S2F0ZWdvcmk6PC9iPiA8c3BhbiBzdHlsZT0iY29sb3I6IGdyZWVuOyBmb250LXdlaWdodDogYm9sZDsiPldpbGF5YWggUmlzaWtvIFJlbmRhaDwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgQmFuamlyOjwvYj4gMzA8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gMSwyNTMsNTMwLjIxIFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_54a5fad872c286fc4601652ab9306420.setContent(i_frame_7f4c786308a3bc3cdcc3e9f0b3e18815);
+            
+        
+
+        circle_marker_c6f73d6c3064b41750ba159a1e67c6a7.bindPopup(popup_54a5fad872c286fc4601652ab9306420)
+        ;
+
+        
+    
+    
+            circle_marker_c6f73d6c3064b41750ba159a1e67c6a7.bindTooltip(
+                `<div>
+                     KABUPATEN INDRAMAYU
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e1af2b89ad08a130e1461d5908a4727c = L.circleMarker(
+                [-6.3, 107.3],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_a452d95e4023a617bffc79e99ce2f968 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_d1908ffcbf7938e4b3f0af30ac20ff03 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gS0FSQVdBTkc8L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogZ3JlZW47IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gUmVuZGFoPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiA4MzwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBTYW1wYWg6PC9iPiAxLDM5OSw0MjMuMjcgVG9uPC9wPgogICAgICAgIDwvZGl2PgogICAgICAgIA==" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_a452d95e4023a617bffc79e99ce2f968.setContent(i_frame_d1908ffcbf7938e4b3f0af30ac20ff03);
+            
+        
+
+        circle_marker_e1af2b89ad08a130e1461d5908a4727c.bindPopup(popup_a452d95e4023a617bffc79e99ce2f968)
+        ;
+
+        
+    
+    
+            circle_marker_e1af2b89ad08a130e1461d5908a4727c.bindTooltip(
+                `<div>
+                     KABUPATEN KARAWANG
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0bfbf28d43eb470565455c1e1f900141 = L.circleMarker(
+                [-6.98, 108.48],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_4b4c8f739f365bd6027df7c69423ea0d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_a8d964981dd43ad1bfa8cd8534d5217d = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gS1VOSU5HQU48L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogZ3JlZW47IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gUmVuZGFoPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiAzNzwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBTYW1wYWg6PC9iPiAzNzEsMDY0LjAzIFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_4b4c8f739f365bd6027df7c69423ea0d.setContent(i_frame_a8d964981dd43ad1bfa8cd8534d5217d);
+            
+        
+
+        circle_marker_0bfbf28d43eb470565455c1e1f900141.bindPopup(popup_4b4c8f739f365bd6027df7c69423ea0d)
+        ;
+
+        
+    
+    
+            circle_marker_0bfbf28d43eb470565455c1e1f900141.bindTooltip(
+                `<div>
+                     KABUPATEN KUNINGAN
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9c88c1a9b44d73dfbfd06c4e730cf826 = L.circleMarker(
+                [-6.84, 108.23],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_28d64242d604a0610b6dcf3fed79dda9 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_015c7f33c9261c199156ac563221c9a1 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gTUFKQUxFTkdLQTwvaDQ+CiAgICAgICAgICAgIDxociBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPkthdGVnb3JpOjwvYj4gPHNwYW4gc3R5bGU9ImNvbG9yOiBncmVlbjsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5XaWxheWFoIFJpc2lrbyBSZW5kYWg8L3NwYW4+PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIEJhbmppcjo8L2I+IDU5PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIFNhbXBhaDo8L2I+IDQxMCw1NDcuMjggVG9uPC9wPgogICAgICAgIDwvZGl2PgogICAgICAgIA==" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_28d64242d604a0610b6dcf3fed79dda9.setContent(i_frame_015c7f33c9261c199156ac563221c9a1);
+            
+        
+
+        circle_marker_9c88c1a9b44d73dfbfd06c4e730cf826.bindPopup(popup_28d64242d604a0610b6dcf3fed79dda9)
+        ;
+
+        
+    
+    
+            circle_marker_9c88c1a9b44d73dfbfd06c4e730cf826.bindTooltip(
+                `<div>
+                     KABUPATEN MAJALENGKA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7800d81ae6acb37c8c4c59b542d9298d = L.circleMarker(
+                [-7.69, 108.65],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_731861ba66461d73f86affb7884e183d = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_190f96f91b05cdbcda3e17acf9d59edd = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gUEFOR0FOREFSQU48L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogZ3JlZW47IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gUmVuZGFoPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiAzMTwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBTYW1wYWg6PC9iPiAyMDksNDQ4LjQ1IFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_731861ba66461d73f86affb7884e183d.setContent(i_frame_190f96f91b05cdbcda3e17acf9d59edd);
+            
+        
+
+        circle_marker_7800d81ae6acb37c8c4c59b542d9298d.bindPopup(popup_731861ba66461d73f86affb7884e183d)
+        ;
+
+        
+    
+    
+            circle_marker_7800d81ae6acb37c8c4c59b542d9298d.bindTooltip(
+                `<div>
+                     KABUPATEN PANGANDARAN
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_08e23068034cad604c10ed2e1c17061b = L.circleMarker(
+                [-6.54, 107.45],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_72f3ea9323eb4037affa376f77b7bf94 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_5e31e99ef8259696b286166470639d7a = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gUFVSV0FLQVJUQTwvaDQ+CiAgICAgICAgICAgIDxociBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPkthdGVnb3JpOjwvYj4gPHNwYW4gc3R5bGU9ImNvbG9yOiBncmVlbjsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5XaWxheWFoIFJpc2lrbyBSZW5kYWg8L3NwYW4+PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIEJhbmppcjo8L2I+IDE1PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIFNhbXBhaDo8L2I+IDQ1MCw1NjIuNzggVG9uPC9wPgogICAgICAgIDwvZGl2PgogICAgICAgIA==" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_72f3ea9323eb4037affa376f77b7bf94.setContent(i_frame_5e31e99ef8259696b286166470639d7a);
+            
+        
+
+        circle_marker_08e23068034cad604c10ed2e1c17061b.bindPopup(popup_72f3ea9323eb4037affa376f77b7bf94)
+        ;
+
+        
+    
+    
+            circle_marker_08e23068034cad604c10ed2e1c17061b.bindTooltip(
+                `<div>
+                     KABUPATEN PURWAKARTA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_497fd312a6fc68e52f48743175e974e2 = L.circleMarker(
+                [-6.57, 107.75],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_2f2e13cfac94abbc5842396934fe2bc3 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_b128724dc60ef57417097142358a5ba9 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gU1VCQU5HPC9oND4KICAgICAgICAgICAgPGhyIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+S2F0ZWdvcmk6PC9iPiA8c3BhbiBzdHlsZT0iY29sb3I6IGdyZWVuOyBmb250LXdlaWdodDogYm9sZDsiPldpbGF5YWggUmlzaWtvIFJlbmRhaDwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgQmFuamlyOjwvYj4gNDU8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gNzU1LDY3My44MyBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_2f2e13cfac94abbc5842396934fe2bc3.setContent(i_frame_b128724dc60ef57417097142358a5ba9);
+            
+        
+
+        circle_marker_497fd312a6fc68e52f48743175e974e2.bindPopup(popup_2f2e13cfac94abbc5842396934fe2bc3)
+        ;
+
+        
+    
+    
+            circle_marker_497fd312a6fc68e52f48743175e974e2.bindTooltip(
+                `<div>
+                     KABUPATEN SUBANG
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5e205699f287f300317c9e26ae85f7df = L.circleMarker(
+                [-6.92, 106.93],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_ab333b2154207e4622c0ae4d7a4b74ba = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_4a28fffeb3caf7e98a92d2e007d1651a = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gU1VLQUJVTUk8L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogZ3JlZW47IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gUmVuZGFoPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiAxMzQ8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gNjI1LDY1OS42MCBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_ab333b2154207e4622c0ae4d7a4b74ba.setContent(i_frame_4a28fffeb3caf7e98a92d2e007d1651a);
+            
+        
+
+        circle_marker_5e205699f287f300317c9e26ae85f7df.bindPopup(popup_ab333b2154207e4622c0ae4d7a4b74ba)
+        ;
+
+        
+    
+    
+            circle_marker_5e205699f287f300317c9e26ae85f7df.bindTooltip(
+                `<div>
+                     KABUPATEN SUKABUMI
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_210cf7c397e4e1e51918c8b63192d379 = L.circleMarker(
+                [-6.85, 107.92],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_396f6131a65bfed4a385a8a92aee502f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_a8db586c6ad0fbcc071d4172b854d0fe = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gU1VNRURBTkc8L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogZ3JlZW47IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gUmVuZGFoPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiA5NDwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBTYW1wYWg6PC9iPiA0NDcsNDMzLjAzIFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_396f6131a65bfed4a385a8a92aee502f.setContent(i_frame_a8db586c6ad0fbcc071d4172b854d0fe);
+            
+        
+
+        circle_marker_210cf7c397e4e1e51918c8b63192d379.bindPopup(popup_396f6131a65bfed4a385a8a92aee502f)
+        ;
+
+        
+    
+    
+            circle_marker_210cf7c397e4e1e51918c8b63192d379.bindTooltip(
+                `<div>
+                     KABUPATEN SUMEDANG
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e2c499edaeb1e5ccedadc8b9283c8306 = L.circleMarker(
+                [-7.35, 108.22],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_2a95189f2d7a2945d3fa265a95b636e2 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_9d4533873c13bc8b60cc7c8c396e38fe = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LQUJVUEFURU4gVEFTSUtNQUxBWUE8L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogZ3JlZW47IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gUmVuZGFoPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiAzNjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBTYW1wYWg6PC9iPiA4ODgsODAzLjA1IFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_2a95189f2d7a2945d3fa265a95b636e2.setContent(i_frame_9d4533873c13bc8b60cc7c8c396e38fe);
+            
+        
+
+        circle_marker_e2c499edaeb1e5ccedadc8b9283c8306.bindPopup(popup_2a95189f2d7a2945d3fa265a95b636e2)
+        ;
+
+        
+    
+    
+            circle_marker_e2c499edaeb1e5ccedadc8b9283c8306.bindTooltip(
+                `<div>
+                     KABUPATEN TASIKMALAYA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_60de103248df7b6fd1e016572b36ee6c = L.circleMarker(
+                [-6.91, 107.61],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_bfe73e61f8e5afd54f5371225c9a3113 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_5e4357258b769d822e4eb319db6f0754 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LT1RBIEJBTkRVTkc8L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogb3JhbmdlOyBmb250LXdlaWdodDogYm9sZDsiPldpbGF5YWggUmlzaWtvIFNlZGFuZzwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgQmFuamlyOjwvYj4gNDg8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gNiwxNjAsODA2Ljc5IFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_bfe73e61f8e5afd54f5371225c9a3113.setContent(i_frame_5e4357258b769d822e4eb319db6f0754);
+            
+        
+
+        circle_marker_60de103248df7b6fd1e016572b36ee6c.bindPopup(popup_bfe73e61f8e5afd54f5371225c9a3113)
+        ;
+
+        
+    
+    
+            circle_marker_60de103248df7b6fd1e016572b36ee6c.bindTooltip(
+                `<div>
+                     KOTA BANDUNG
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2712e37602cb48ba3e33d4882b2d5b6a = L.circleMarker(
+                [-7.37, 108.54],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_1983cc52ddef3c33c99e507aff27658b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_5fc14e58d77068dfb736751892991a02 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LT1RBIEJBTkpBUjwvaDQ+CiAgICAgICAgICAgIDxociBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPkthdGVnb3JpOjwvYj4gPHNwYW4gc3R5bGU9ImNvbG9yOiBncmVlbjsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5XaWxheWFoIFJpc2lrbyBSZW5kYWg8L3NwYW4+PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIEJhbmppcjo8L2I+IDU8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gMzE0LDAzMC4zNiBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_1983cc52ddef3c33c99e507aff27658b.setContent(i_frame_5fc14e58d77068dfb736751892991a02);
+            
+        
+
+        circle_marker_2712e37602cb48ba3e33d4882b2d5b6a.bindPopup(popup_1983cc52ddef3c33c99e507aff27658b)
+        ;
+
+        
+    
+    
+            circle_marker_2712e37602cb48ba3e33d4882b2d5b6a.bindTooltip(
+                `<div>
+                     KOTA BANJAR
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2c2ac080ed976b5d37f8ebafac83cab2 = L.circleMarker(
+                [-6.24, 106.99],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_f1cf76ce4d2784063b7a9566273622a6 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_4cb5b0221c17d4f4843cf46e9bd9e782 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LT1RBIEJFS0FTSTwvaDQ+CiAgICAgICAgICAgIDxociBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPkthdGVnb3JpOjwvYj4gPHNwYW4gc3R5bGU9ImNvbG9yOiBvcmFuZ2U7IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gU2VkYW5nPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiA1NjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBTYW1wYWg6PC9iPiA1LDYzNSwzNTAuMTIgVG9uPC9wPgogICAgICAgIDwvZGl2PgogICAgICAgIA==" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_f1cf76ce4d2784063b7a9566273622a6.setContent(i_frame_4cb5b0221c17d4f4843cf46e9bd9e782);
+            
+        
+
+        circle_marker_2c2ac080ed976b5d37f8ebafac83cab2.bindPopup(popup_f1cf76ce4d2784063b7a9566273622a6)
+        ;
+
+        
+    
+    
+            circle_marker_2c2ac080ed976b5d37f8ebafac83cab2.bindTooltip(
+                `<div>
+                     KOTA BEKASI
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0cc23dda45094082b6422f2402f4dbaf = L.circleMarker(
+                [-6.6, 106.8],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_5ca40c04ecb87ffb0afac454b9161601 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_0e3eb862f3663c3fa47fa3e67ca00590 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LT1RBIEJPR09SPC9oND4KICAgICAgICAgICAgPGhyIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+S2F0ZWdvcmk6PC9iPiA8c3BhbiBzdHlsZT0iY29sb3I6IGdyZWVuOyBmb250LXdlaWdodDogYm9sZDsiPldpbGF5YWggUmlzaWtvIFJlbmRhaDwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgQmFuamlyOjwvYj4gOTE8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gMiw2MTAsNTkzLjIwIFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_5ca40c04ecb87ffb0afac454b9161601.setContent(i_frame_0e3eb862f3663c3fa47fa3e67ca00590);
+            
+        
+
+        circle_marker_0cc23dda45094082b6422f2402f4dbaf.bindPopup(popup_5ca40c04ecb87ffb0afac454b9161601)
+        ;
+
+        
+    
+    
+            circle_marker_0cc23dda45094082b6422f2402f4dbaf.bindTooltip(
+                `<div>
+                     KOTA BOGOR
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6c28c8f668cda379fb3fdfe4a75c249c = L.circleMarker(
+                [-6.88, 107.54],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_8354487dc661ad9497b76f8e6e2df92c = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_c4ea523d586d5a189469262d3fd8f48f = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LT1RBIENJTUFISTwvaDQ+CiAgICAgICAgICAgIDxociBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPkthdGVnb3JpOjwvYj4gPHNwYW4gc3R5bGU9ImNvbG9yOiBncmVlbjsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5XaWxheWFoIFJpc2lrbyBSZW5kYWg8L3NwYW4+PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIEJhbmppcjo8L2I+IDY2PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIFNhbXBhaDo8L2I+IDEsMjk5LDg2MC41NyBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_8354487dc661ad9497b76f8e6e2df92c.setContent(i_frame_c4ea523d586d5a189469262d3fd8f48f);
+            
+        
+
+        circle_marker_6c28c8f668cda379fb3fdfe4a75c249c.bindPopup(popup_8354487dc661ad9497b76f8e6e2df92c)
+        ;
+
+        
+    
+    
+            circle_marker_6c28c8f668cda379fb3fdfe4a75c249c.bindTooltip(
+                `<div>
+                     KOTA CIMAHI
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ac9c1ada58910eda71fd8322492cee17 = L.circleMarker(
+                [-6.71, 108.56],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_a1a82f33564b7245f6c6c1a9ebac39bf = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_8d0782d1e57b249bc907d7c8dcc74d9b = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LT1RBIENJUkVCT048L2g0PgogICAgICAgICAgICA8aHIgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5LYXRlZ29yaTo8L2I+IDxzcGFuIHN0eWxlPSJjb2xvcjogZ3JlZW47IGZvbnQtd2VpZ2h0OiBib2xkOyI+V2lsYXlhaCBSaXNpa28gUmVuZGFoPC9zcGFuPjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBCYW5qaXI6PC9iPiAyMjwvcD4KICAgICAgICAgICAgPHAgc3R5bGU9Im1hcmdpbjogNXB4IDA7Ij48Yj5Ub3RhbCBTYW1wYWg6PC9iPiA4NDAsMTg5Ljg5IFRvbjwvcD4KICAgICAgICA8L2Rpdj4KICAgICAgICA=" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_a1a82f33564b7245f6c6c1a9ebac39bf.setContent(i_frame_8d0782d1e57b249bc907d7c8dcc74d9b);
+            
+        
+
+        circle_marker_ac9c1ada58910eda71fd8322492cee17.bindPopup(popup_a1a82f33564b7245f6c6c1a9ebac39bf)
+        ;
+
+        
+    
+    
+            circle_marker_ac9c1ada58910eda71fd8322492cee17.bindTooltip(
+                `<div>
+                     KOTA CIREBON
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9440e7f9983a720472e7024dc7fc3a71 = L.circleMarker(
+                [-6.4, 106.82],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_3c7b6bf6f94c46411748df9095195489 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_70c4a1bcc4471c06fd67d4cd220a537a = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LT1RBIERFUE9LPC9oND4KICAgICAgICAgICAgPGhyIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+S2F0ZWdvcmk6PC9iPiA8c3BhbiBzdHlsZT0iY29sb3I6IG9yYW5nZTsgZm9udC13ZWlnaHQ6IGJvbGQ7Ij5XaWxheWFoIFJpc2lrbyBTZWRhbmc8L3NwYW4+PC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIEJhbmppcjo8L2I+IDIwPC9wPgogICAgICAgICAgICA8cCBzdHlsZT0ibWFyZ2luOiA1cHggMDsiPjxiPlRvdGFsIFNhbXBhaDo8L2I+IDQsNTkyLDczNC42NiBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_3c7b6bf6f94c46411748df9095195489.setContent(i_frame_70c4a1bcc4471c06fd67d4cd220a537a);
+            
+        
+
+        circle_marker_9440e7f9983a720472e7024dc7fc3a71.bindPopup(popup_3c7b6bf6f94c46411748df9095195489)
+        ;
+
+        
+    
+    
+            circle_marker_9440e7f9983a720472e7024dc7fc3a71.bindTooltip(
+                `<div>
+                     KOTA DEPOK
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d8dbc9cf23caa1fa9e3dd26feafdaf56 = L.circleMarker(
+                [-6.91, 106.93],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_8257d7abb7d7f4f51c8f6a99d386e98b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_0a93c8df7163d914656bbe91fae922f5 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LT1RBIFNVS0FCVU1JPC9oND4KICAgICAgICAgICAgPGhyIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+S2F0ZWdvcmk6PC9iPiA8c3BhbiBzdHlsZT0iY29sb3I6IGdyZWVuOyBmb250LXdlaWdodDogYm9sZDsiPldpbGF5YWggUmlzaWtvIFJlbmRhaDwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgQmFuamlyOjwvYj4gMTM8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gODExLDI3My42OCBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_8257d7abb7d7f4f51c8f6a99d386e98b.setContent(i_frame_0a93c8df7163d914656bbe91fae922f5);
+            
+        
+
+        circle_marker_d8dbc9cf23caa1fa9e3dd26feafdaf56.bindPopup(popup_8257d7abb7d7f4f51c8f6a99d386e98b)
+        ;
+
+        
+    
+    
+            circle_marker_d8dbc9cf23caa1fa9e3dd26feafdaf56.bindTooltip(
+                `<div>
+                     KOTA SUKABUMI
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2515d767d727ff3802adbe6e9d4414f9 = L.circleMarker(
+                [-7.33, 108.2],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 3}
+            ).addTo(map_1c2fe25440867bb3b5578cf3aa237d9a);
+        
+    
+        var popup_8e915567770983a63b665e2184472a45 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var i_frame_a8c9fa9cbe1f7b1e68641786d22b69c4 = $(`<iframe src="data:text/html;charset=utf-8;base64,CiAgICAKICAgICAgICA8ZGl2IHN0eWxlPSJmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IHdpZHRoOiAyMjBweDsiPgogICAgICAgICAgICA8aDQgc3R5bGU9Im1hcmdpbi1ib3R0b206IDVweDsgY29sb3I6ICMzMzM7Ij5LT1RBIFRBU0lLTUFMQVlBPC9oND4KICAgICAgICAgICAgPGhyIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+S2F0ZWdvcmk6PC9iPiA8c3BhbiBzdHlsZT0iY29sb3I6IGdyZWVuOyBmb250LXdlaWdodDogYm9sZDsiPldpbGF5YWggUmlzaWtvIFJlbmRhaDwvc3Bhbj48L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgQmFuamlyOjwvYj4gMzk8L3A+CiAgICAgICAgICAgIDxwIHN0eWxlPSJtYXJnaW46IDVweCAwOyI+PGI+VG90YWwgU2FtcGFoOjwvYj4gNjkzLDU4NC45NCBUb248L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAg" width="250" style="border:none !important;" height="140"></iframe>`)[0];
+                popup_8e915567770983a63b665e2184472a45.setContent(i_frame_a8c9fa9cbe1f7b1e68641786d22b69c4);
+            
+        
+
+        circle_marker_2515d767d727ff3802adbe6e9d4414f9.bindPopup(popup_8e915567770983a63b665e2184472a45)
+        ;
+
+        
+    
+    
+            circle_marker_2515d767d727ff3802adbe6e9d4414f9.bindTooltip(
+                `<div>
+                     KOTA TASIKMALAYA
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>
