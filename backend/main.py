@@ -9,8 +9,9 @@ import os
 # ============================================================
 # PATH KONFIGURASI
 # ============================================================
-DATA_PATH = os.path.join(os.path.dirname(__file__), 'data', 'hasil_cluster.csv')
-RAW_DATA_PATH = os.path.join(os.path.dirname(__file__), 'data', 'hasil_eda_etl.csv')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATA_PATH = os.path.join(BASE_DIR, 'data', 'hasil_cluster.csv')
+RAW_DATA_PATH = os.path.join(BASE_DIR, 'data', 'hasil_eda_etl.csv')
 
 # ============================================================
 # CACHE GLOBAL — Lazy loaded, TIDAK pre-load saat startup
@@ -92,6 +93,35 @@ app.add_middleware(
 def read_root():
     """Health check endpoint."""
     return {"message": "BI Dashboard API aktif", "status": "ok"}
+
+
+@app.get("/api/debug")
+def debug_environment():
+    """Endpoint untuk cek struktur file (untuk debugging Hugging Face)"""
+    import os
+    base_dir = BASE_DIR
+    data_dir = os.path.join(base_dir, 'data')
+    
+    try:
+        base_files = os.listdir(base_dir)
+    except Exception as e:
+        base_files = f"Error: {e}"
+        
+    try:
+        data_files = os.listdir(data_dir)
+    except Exception as e:
+        data_files = f"Error: {e}"
+        
+    return {
+        "base_dir": base_dir,
+        "base_files": base_files,
+        "data_dir": data_dir,
+        "data_files": data_files,
+        "raw_data_path": RAW_DATA_PATH,
+        "raw_data_exists": os.path.exists(RAW_DATA_PATH),
+        "cluster_data_path": DATA_PATH,
+        "cluster_data_exists": os.path.exists(DATA_PATH)
+    }
 
 
 @app.get("/api/dashboard/stats")

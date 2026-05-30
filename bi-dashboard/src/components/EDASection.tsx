@@ -57,8 +57,12 @@ export default function EDASection() {
     const fetchData = async () => {
       try {
         const res = await fetch(API.EDA_STATS);
-        if (!res.ok) throw new Error("Gagal mengambil data EDA dari server");
         const data = await res.json();
+        
+        if (!res.ok || data.error) {
+           throw new Error(data.error || "Gagal mengambil data EDA dari server");
+        }
+        
         setEdaData(data);
         setLoading(false);
       } catch (err: any) {
